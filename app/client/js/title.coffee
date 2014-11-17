@@ -9,11 +9,10 @@ class app.Title
   ###
   constructor: (@routes) ->
 
-  @MSG_HOME: goog.getMsg 'N & C'
   @MSG_NOT_FOUND: goog.getMsg 'Page Not Found'
 
   get: ->
     switch @routes.active
-      when @routes.home then Title.MSG_HOME
+      when @routes.home then app.react.pages.Home.MSG_HEADING
       else Title.MSG_NOT_FOUND
 
