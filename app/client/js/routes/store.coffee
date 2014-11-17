@@ -8,13 +8,12 @@ class app.routes.Store extends este.Store
   ###*
     @param {app.Actions} actions
     @param {app.Routes} routes
-    @param {app.Storage} storage
     @param {este.Dispatcher} dispatcher
     @param {este.Router} router
     @constructor
     @extends {este.Store}
   ###
-  constructor: (@actions, @routes, @storage, 
+  constructor: (@actions, @routes,
       @dispatcher, @router) ->
 
     @dispatcher.register (action, payload) =>
