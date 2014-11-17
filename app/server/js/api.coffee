@@ -1,59 +1,17 @@
 goog.provide 'server.Api'
 
 goog.require 'goog.Promise'
-goog.require 'server.songs'
 
 class server.Api
 
   ###*
     @param {app.Routes} routes
-    @param {app.songs.Store} songsStore
-    @param {server.ElasticSearch} elastic
     @constructor
   ###
-  constructor: (routes, songsStore, elastic) ->
+  constructor: (routes) ->
     api = routes.api
     @handlers = []
 
-    # Publish/Unpublish.
-    # @route api.songs.id
-    #   .put (req) ->
-    #     errors = new app.songs.Song req.body
-    #       .validatePublished()
-    #     if errors.length
-    #       return goog.Promise.reject errors
-    #     server.songs.toPublishedJson req.body
-    #       .then (song) ->
-    #         elastic.index index: 'songary', type: 'song', id: req.params.id, body:
-    #           song
-    #
-    #   .delete (req) ->
-    #     elastic.delete index: 'songary', type: 'song', id: req.params.id
-
-    @route api.songs.recentlyUpdated
-      .get ->
-        elastic.getRecentlyUpdatedSongs()
-
-    @route api.songs.byUrl
-      .get (req) ->
-        elastic.getSongsByUrl req.params.urlArtist, req.params.urlName
-
-    @route api.songs.search
-      .get (req) ->
-        elastic.searchSongsByQuery req.query.query
-
-    @route api.clientErrors
-      .post (req) ->
-        elastic.index index: 'songary', type: 'clienterror', body:
-          # Does not work for some reason, but line is specified in trace.
-          # line: req.body['line']
-          action: req.query.action
-          error: req.query.error
-          reportedAt: new Date().toISOString()
-          script: req.query.script
-          trace: req.body.trace
-          user: req.query.user
-          userAgent: req.headers['user-agent']
 
   ###*
     @param {este.Route} route

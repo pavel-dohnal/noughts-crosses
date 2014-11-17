@@ -30,12 +30,7 @@ server.main = (config) ->
       isDev: config['env']['development']
       version: config['version']
       clientData: app: version: config['version']
-  ,
-    resolve: server.ElasticSearch
-    with:
-      elasticSearch: require 'elasticsearch'
-      host: config['elasticSearch']['host']
-  ,
+  ,    
     resolve: server.Passport
     with:
       passport: require 'passport'

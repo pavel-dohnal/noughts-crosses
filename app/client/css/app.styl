@@ -19,30 +19,15 @@
   box-sizing border-box
 
 body
-  // http://ux.stackexchange.com/a/39353 TODO: Consider Google Noto font.
   font-family 'Segoe UI', 'Lucida Grande','Ubuntu','sans-serif'
   font-size 16px
   line-height 1.4
   background-color #eee
 
   .app
-
-    &.active-page-edit-song
-      @import 'pages/editsong'
     &.active-page-home
       @import 'pages/home'
     &.active-page-notfound
       @import 'pages/notfound'
-    &.active-page-song
-      @import 'pages/song'
-    &.active-page-trash
-      @import 'pages/trash'
-    &.active-page-me
-      @import 'pages/me'
-
-    >
-      @import 'header'
-    >
-      @import 'footer'
 
     padding 0 1.5em

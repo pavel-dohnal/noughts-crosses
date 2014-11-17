@@ -3,7 +3,7 @@ path = require 'path'
 
 # TODO: Change before release, then use env vars like process.env.COOKIE_SECRET.
 elasticSearchHost = 'http://101e695cd8f4b826000.qbox.io'
-cookieSecret = 'songary'
+cookieSecret = 'xdsfaksdfj'
 
 currentEnv = process.env.NODE_ENV || 'development'
 port = process.env.PORT || 8000

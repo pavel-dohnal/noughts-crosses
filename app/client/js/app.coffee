@@ -7,13 +7,12 @@ class App
     @param {este.Dispatcher} dispatcher
     @param {app.ErrorReporter} errorReporter
     @param {app.LocalStorage} localStorage
-    @param {app.facebook.Store} facebookStore
     @param {app.react.App} reactApp
     @param {app.routes.Store} routesStore
     @param {app.users.Store} usersStore
     @constructor
   ###
-  constructor: (element, dispatcher, errorReporter, localStorage, facebookStore,
+  constructor: (element, dispatcher, errorReporter, localStorage, 
       reactApp, routesStore, usersStore) ->
 
     dispatcher.register (action, payload) ->
@@ -23,5 +22,4 @@ class App
 
     errorReporter.init dispatcher
     localStorage.init [usersStore]
-    facebookStore.init()
     routesStore.start()

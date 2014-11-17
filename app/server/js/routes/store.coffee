@@ -7,11 +7,9 @@ class server.routes.Store
 
   ###*
     @param {app.Routes} routes
-    @param {server.ElasticSearch} elastic
-    @param {app.songs.Store} songsStore
     @constructor
   ###
-  constructor: (@routes, @elastic, @songsStore) ->
+  constructor: (@routes) ->
 
   ok: ->
     goog.Promise.resolve goog.net.HttpStatus.OK
@@ -26,18 +24,7 @@ class server.routes.Store
   ###
   load: (route, params) ->
     switch route
-      when @routes.about, @routes.home, @routes.newSong
+      when @routes.home
         @ok()
-      when @routes.song
-        @elastic.getSongsByUrl params.urlArtist, params.urlName
-          .then (songs) =>
-            return @notFound() if !songs.length
-            @songsStore.fromJson songsByUrl: songs
-      when @routes.songs
-        @ok()
-      when @routes.recentlyUpdatedSongs
-        @elastic.getRecentlyUpdatedSongs()
-          .then (songs) =>
-            @songsStore.fromJson recentlyUpdatedSongs: songs
       else
         @notFound()

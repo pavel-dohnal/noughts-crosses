@@ -9,14 +9,12 @@ class app.routes.Store extends este.Store
     @param {app.Actions} actions
     @param {app.Routes} routes
     @param {app.Storage} storage
-    @param {app.songs.Store} songsStore
-    @param {app.users.Store} usersStore
     @param {este.Dispatcher} dispatcher
     @param {este.Router} router
     @constructor
     @extends {este.Store}
   ###
-  constructor: (@actions, @routes, @storage, @songsStore, @usersStore,
+  constructor: (@actions, @routes, @storage, 
       @dispatcher, @router) ->
 
     @dispatcher.register (action, payload) =>
@@ -43,20 +41,7 @@ class app.routes.Store extends este.Store
     HttpStatus = goog.net.HttpStatus
 
     switch route
-      when @routes.about, @routes.home, @routes.newSong, @routes.songs, @routes.trash
+      when @routes.home
         HttpStatus.OK
-      when @routes.me
-        if !@usersStore.isLogged() then throw HttpStatus.NOT_FOUND
-        HttpStatus.OK
-      when @routes.mySong, @routes.editSong
-        if !@usersStore.songById params.id then throw HttpStatus.NOT_FOUND
-        HttpStatus.OK
-      when @routes.song
-        @storage.getSong(params).then (songs) =>
-          if !songs.length then throw HttpStatus.NOT_FOUND
-          @songsStore.fromJson songsByUrl: songs
-      when @routes.recentlyUpdatedSongs
-        @storage.getRecentlyUpdatedSongs().then (songs) =>
-          @songsStore.fromJson recentlyUpdatedSongs: songs
       else
         throw HttpStatus.NOT_FOUND
