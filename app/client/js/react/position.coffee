@@ -7,9 +7,13 @@ class app.react.Position
     @constructor
   ###
   constructor: (element) ->
-    {td} = element
+    {td, img} = element
 
     @component = React.createFactory React.createClass
 
       render: ->
-        td {}, @props.position
+        imgsrc = '/app/client/img/cross.svg'
+        if @props.position == 'x'
+          imgsrc = '/app/client/img/nought.svg'
+        td {}, 
+          img {src: imgsrc, width: 50, height:50}, 

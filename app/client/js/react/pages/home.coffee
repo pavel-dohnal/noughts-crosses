@@ -9,7 +9,7 @@ class app.react.pages.Home
     @constructor
   ###
   constructor: (routes, game, element) ->
-    {div, ul, li, p, nav, h1} = element
+    {div, h1} = element
 
     @component = React.createFactory React.createClass
 
