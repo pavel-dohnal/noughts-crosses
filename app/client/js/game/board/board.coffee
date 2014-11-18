@@ -20,8 +20,8 @@ class app.game.Board
   ###*    
     @constructor
   ###
-  constructor: (@size) ->  
-       
+  constructor: (@size) ->
+    @initPositions()
 
   ###*
     @type {Object.<string, app.game.Player>}
@@ -39,6 +39,12 @@ class app.game.Board
   init: (players) ->
     @initPositions()
     @initPlayers players
+
+  getPosition: (i, j) ->
+    @positions[i][j]
+
+  getSize: () ->
+    return @positions.length
 
   ###*
     @private

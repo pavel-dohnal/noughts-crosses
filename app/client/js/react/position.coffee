@@ -1,5 +1,7 @@
 goog.provide 'app.react.Position'
 
+goog.require 'app.game.Board'
+
 class app.react.Position
 
   ###*
@@ -13,7 +15,10 @@ class app.react.Position
 
       render: ->
         imgsrc = '/app/client/img/cross.svg'
-        if @props.position == 'x'
+        if @props.position == app.game.Board.STONE_TYPES.PLAYER_0
           imgsrc = '/app/client/img/nought.svg'
         td {}, 
-          img {src: imgsrc, width: 50, height:50}, 
+          if @props.position == app.game.Board.STONE_TYPES.EMPTY
+            ' '
+          else
+            img {src: imgsrc, width: 50, height:50}, 

@@ -32,6 +32,9 @@ class app.game.NoughtsAndCrosses
   ###
   players: []
 
+  ###*
+    @type {app.game.Board}
+  ###
   board: null
 
   ###*
@@ -45,6 +48,12 @@ class app.game.NoughtsAndCrosses
     for i in [1 .. NoughtsAndCrosses.PLAYER_COUNT]
       @players.push @playerFactory.create()
     @board.init @players
+
+  ###*
+    @return {app.game.Board}
+  ###
+  getBoard: () ->
+    return @board
 
   ###*
     @param {goog.math.Coordinate} coordinate

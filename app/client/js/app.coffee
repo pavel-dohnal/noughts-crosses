@@ -8,10 +8,11 @@ class App
     @param {app.ErrorReporter} errorReporter
     @param {app.react.App} reactApp
     @param {app.routes.Store} routesStore
+    @param {app.game.NoughtsAndCrosses} noughtsAndCrosses
     @constructor
   ###
   constructor: (element, dispatcher, errorReporter,
-      reactApp, routesStore) ->
+      reactApp, routesStore, noughtsAndCrosses) ->
 
     dispatcher.register (action, payload) ->
       switch action
@@ -20,3 +21,4 @@ class App
 
     errorReporter.init dispatcher
     routesStore.start()
+    noughtsAndCrosses.startGame()
