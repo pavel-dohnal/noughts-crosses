@@ -20,12 +20,14 @@ class app.game.NoughtsAndCrosses
   ###*    
     @param {app.game.PlayerFactory} playerFactory
     @param {app.game.BoardFactory} boardFactory
+    @param {app.game.noughtsAndCrosses.WinningStrategy} winningStrategy
     @constructor
   ###
-  constructor: (@playerFactory, @boardFactory) ->
-  	@board = @boardFactory.create NoughtsAndCrosses.SIZE
-  	@currentPlayer = 0
-  	@players = []
+  constructor: (@playerFactory, @boardFactory, @winningStrategy) ->
+    @board = @boardFactory.create NoughtsAndCrosses.SIZE
+    @currentPlayer = 0
+    @winner = -1
+    @players = []
 
   ###*
     @type {Array<app.game.Player>}
@@ -42,12 +44,18 @@ class app.game.NoughtsAndCrosses
   ###
   currentPlayer: 0
 
+  ###*
+    @type {number}
+  ###
+  winner: -1
+
   startGame: () ->
     @players = []
     @currentPlayer = 0
     for i in [1 .. NoughtsAndCrosses.PLAYER_COUNT]
       @players.push @playerFactory.create()
     @board.init @players
+    @winner = -1
 
   ###*
     @return {app.game.Board}
@@ -68,5 +76,5 @@ class app.game.NoughtsAndCrosses
       player.addStone coordinate
     @board.updatePlayersStones player
     @currentPlayer = (@currentPlayer + 1) % NoughtsAndCrosses.PLAYER_COUNT
-    #check if end
+    #TODO check if end
     
