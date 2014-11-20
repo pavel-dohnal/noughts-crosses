@@ -2,6 +2,7 @@ goog.provide 'app.game.NoughtsAndCrosses'
 
 goog.require 'app.game.Board'
 goog.require 'app.game.BoardFactory'
+goog.require 'app.game.noughtsAndCrosses.WinningStrategy'
 goog.require 'app.game.Player'
 goog.require 'app.game.PlayerFactory'
 
@@ -64,10 +65,18 @@ class app.game.NoughtsAndCrosses
     return @board
 
   ###*
+    @return {app.game.Player|null}
+  ###
+  getWinner: () ->
+    return null if @winner == -1
+    return @players[@winner]
+    
+  ###*
     @param {goog.math.Coordinate} coordinate
   ###
   move: (coordinate) ->
     #TODO check if move is allowed
+    return if @winner != -1
     player = @players[@currentPlayer]
     if player.getStoneCount() == NoughtsAndCrosses.SIZE
       last = player.getLastStone()
@@ -75,6 +84,7 @@ class app.game.NoughtsAndCrosses
     else
       player.addStone coordinate
     @board.updatePlayersStones player
-    @currentPlayer = (@currentPlayer + 1) % NoughtsAndCrosses.PLAYER_COUNT
-    #TODO check if end
-    
+    if @winningStrategy.didWin player
+      @winner = @currentPlayer
+    else
+      @currentPlayer = (@currentPlayer + 1) % NoughtsAndCrosses.PLAYER_COUNT

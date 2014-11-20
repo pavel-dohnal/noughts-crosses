@@ -18,7 +18,9 @@ suite 'app.game.NoughtsAndCrosses', ->
   playersFactoryStub.onCall(0).returns(player1)
   playersFactoryStub.onCall(1).returns(player2)
 
-  game = new Game playersFactory, boardFactory
+  winningStrategy = new app.game.noughtsAndCrosses.WinningStrategy
+
+  game = new Game playersFactory, boardFactory, winningStrategy
 
   suite 'startGame', ->
     test 'should init the board and players', ->
@@ -30,6 +32,7 @@ suite 'app.game.NoughtsAndCrosses', ->
       game.startGame()
       assert.equal game.currentPlayer, 0
       assert.equal game.players.length, 2
+      assert.equal game.winner, -1
       boardMock.verify()
       boardMock.restore()
 
@@ -91,3 +94,25 @@ suite 'app.game.NoughtsAndCrosses', ->
 
       game.move coordinate
       assert.equal game.currentPlayer, 0
+
+    test 'should do nothing after game ended', ->
+      winningStrategyMock = sinon.mock winningStrategy
+      winningStrategyMock
+        .expects('didWin')
+        .once()
+        .withArgs(player1)
+        .returns(true)
+      
+      game.players = players
+      game.currentPlayer = 0
+      coordinate = new goog.math.Coordinate 0, 0
+
+      assert.isNull game.getWinner()
+      game.move coordinate
+      assert.equal game.currentPlayer, 0
+      assert.strictEqual game.getWinner(), player1
+
+      game.move coordinate
+      assert.equal game.currentPlayer, 0
+      assert.strictEqual game.getWinner(), player1
+      winningStrategyMock.verify()
