@@ -14,10 +14,14 @@ class app.Actions extends este.Actions
 
   @LOAD_ROUTE: 'load-route'
   @RENDER_APP: 'render-app'
+  @MOVE: 'move'
 
   loadRoute: (route, params) ->
     @dispatch Actions.LOAD_ROUTE, route: route, params: params
 
   renderApp: ->
     @dispatch Actions.RENDER_APP
+
+  move: (coordinate) ->
+    @dispatch Actions.MOVE, coordinate: coordinate
 

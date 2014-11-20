@@ -29,7 +29,7 @@ class app.game.Board
   stonesToPlayerMapping: {}
 
   ###*
-    @type {Array.<Array.<number>>}
+    @type {Array.<Array.<string>>}
   ###
   positions: []
 
@@ -79,7 +79,7 @@ class app.game.Board
     
   ###*
     @param {string} symbol
-    @param {Array<app.game.Player>} player
+    @param {app.game.Player} player
     @private
   ###
   addPlayersStones: (symbol, player) ->
@@ -103,7 +103,7 @@ class app.game.Board
   ###
   findPlayersSymbol: (player) ->
     for iSymbol, iPlayer of @stonesToPlayerMapping
-      if iPlayer = iSymbol
+      if iPlayer == player
         return iSymbol
     throw new Error 'Player is not in game'
 

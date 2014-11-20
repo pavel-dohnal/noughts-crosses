@@ -11,7 +11,7 @@ class app.game.BoardFactory
 
   ###*
     @param {number} size
-    @return {app.game.Player}
+    @return {app.game.Board}
   ###
   create: (size) ->
     return new app.game.Board size
