@@ -7,9 +7,9 @@ goog.require 'app.game.noughtsAndCrosses.WinningStrategy'
 
 class app.game.NoughtsAndCrossesIntegration
 
-	###*
-		This class is here only for testing reasons, it is not instantiated anywhere.
-		Este framework doesn't run tests which doesn't have class. 
-		@constructor
-	###
-	constructor: () ->
+  ###*
+    This class is here only for testing reasons, it is not instantiated anywhere.
+    Este framework doesn't run tests which doesn't have class. 
+    @constructor
+  ###
+  constructor: () ->

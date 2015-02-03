@@ -13,4 +13,4 @@ class app.game.PlayerFactory
     @return {app.game.Player}
   ###
   create: () ->
-  	return new app.game.Player
+    return new app.game.Player
