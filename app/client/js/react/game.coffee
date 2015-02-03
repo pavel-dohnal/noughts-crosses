@@ -30,5 +30,5 @@ class app.react.Game
             if noughtsAndCrosses.getWinner() == null
               'Play play play' 
             else
-              'We have a winner'
+              'We\'ve got a winner'
 

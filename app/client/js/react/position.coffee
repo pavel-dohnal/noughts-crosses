@@ -25,7 +25,7 @@ class app.react.Position
           if @props.position == app.game.Board.STONE_TYPES.EMPTY
             ' '
           else
-            img {src: imgsrc, width: 50, height:50}, 
+            img {src: imgsrc, width: 50, height:50, key:'img' + imgsrc}, 
 
       ###*
         @param {SyntheticMouseEvent} e

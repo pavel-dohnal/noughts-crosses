@@ -76,15 +76,14 @@ class app.game.NoughtsAndCrosses
   ###
   move: (coordinate) ->
     #TODO check if move is allowed
-    return if @winner != -1
-    player = @players[@currentPlayer]
-    if player.getStoneCount() == NoughtsAndCrosses.SIZE
-      last = player.getLastStone()
-      player.move last, coordinate
+    return if @winner != -1    
+    if @players[@currentPlayer].getStoneCount() == NoughtsAndCrosses.SIZE
+      last = @players[@currentPlayer].getLastStone()
+      @players[@currentPlayer].move last, coordinate
     else
-      player.addStone coordinate
-    @board.updatePlayersStones player
-    if @winningStrategy.didWin player
+      @players[@currentPlayer].addStone coordinate    
+    @board.updatePlayersStones @players[@currentPlayer]    
+    if @winningStrategy.didWin @players[@currentPlayer]      
       @winner = @currentPlayer
     else
-      @currentPlayer = (@currentPlayer + 1) % NoughtsAndCrosses.PLAYER_COUNT
+      @currentPlayer = (@currentPlayer + 1) % NoughtsAndCrosses.PLAYER_COUNT    

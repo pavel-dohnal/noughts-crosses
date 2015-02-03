@@ -26,7 +26,7 @@ class app.react.App
         page = @getActivePage pageProps
 
         div className: 'app active-page-' + @getPageClassName(page),
-          page.component pageProps          
+          page.component pageProps
 
       getActivePage: (props) ->
         page = switch routes.active

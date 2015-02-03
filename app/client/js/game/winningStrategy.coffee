@@ -16,7 +16,7 @@ class app.game.noughtsAndCrosses.WinningStrategy
     @return {boolean}
   ###
   didWin: (player) ->
-    stones = player.getStones()
+    stones = goog.array.clone player.getStones()
     goog.array.sort stones, (x, y) ->
       return x.x - y.x if x.x != y.x
       return x.y - y.y if x.y != y.y
