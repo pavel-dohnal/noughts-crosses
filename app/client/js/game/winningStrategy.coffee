@@ -1,7 +1,6 @@
 goog.provide 'app.game.noughtsAndCrosses.WinningStrategy'
 
 goog.require 'goog.math.Coordinate'
-goog.require 'app.game.NoughtsAndCrosses'
 goog.require 'app.game.Player'
 
 class app.game.noughtsAndCrosses.WinningStrategy
