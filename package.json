@@ -1,8 +1,8 @@
 {
-  "name": "Songary",
-  "description": "Your personal song book. Demo app for Este.js",
+  "name": "Noughts and Crosses",
+  "description": "Noughts and crosses with a little twist",
   "version": "0.1.1",
-  "author": "Daniel Steigerwald <daniel@steigerwald.cz>",
+  "author": "Pavel Dohnal <pavel@dohnal.us>",
   "private": true,
   "dependencies": {
     "body-parser": "^1.0.1",
