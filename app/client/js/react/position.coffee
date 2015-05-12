@@ -11,21 +11,24 @@ class app.react.Position
     @constructor
   ###
   constructor: (element, actions) ->
-    {td, img} = element
+    {td, img, span, div} = element
 
     @component = React.createFactory React.createClass
 
       render: ->
-        imgsrc = '/app/client/img/cross.svg'
+
+        className = 'cross'
         if @props.position == app.game.Board.STONE_TYPES.PLAYER_0
-          imgsrc = '/app/client/img/nought.svg'
-        td 
+          className = 'nought'
+        else if @props.position == app.game.Board.STONE_TYPES.EMPTY
+            className = ''
+        td
           onClick: @onClick
-        , 
-          if @props.position == app.game.Board.STONE_TYPES.EMPTY
-            ' '
-          else
-            img {src: imgsrc, width: 50, height:50, key:'img' + imgsrc}, 
+          className: className
+        ,
+          div {className: "cosi"},
+            span {}, ' '
+
 
       ###*
         @param {SyntheticMouseEvent} e

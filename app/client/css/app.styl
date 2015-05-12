@@ -16,7 +16,7 @@
 // to the module. From: http://css-tricks.com/rems-ems.
 
 *, ::after, ::before
-  box-sizing border-box
+  box-sizing content-box
 
 body
   font-family 'Segoe UI', 'Lucida Grande','Ubuntu','sans-serif'
@@ -33,16 +33,42 @@ body
     padding 0 1.5em
 
   .game-board
-      tr 
+      div.cosi
+        display flex
+        justify-content space-around
+        align-items center
+        width 50px
+        height 50px
+      tr
         border-collapse collapse
         border-top 5px solid black
         border-bottom 5px solid black
         td
           padding 0
-          width 55px
-          height 55px
+          width 50px
+          height 50px
           border-left 5px solid black
           border-right 5px solid black
+          span
+            transition-timing-function cubic-bezier(.94,.29,.13,.7)
+            transition all 0.4s
+            transition-property: width, height
+            background-position center center
+            background-size 100%
+            background-repeat no-repeat
+            display block
+            width 0px
+            height 0px
+            display block
+          &.cross div span
+            background-image url("/app/client/img/cross.svg")
+            width 50px
+            height 50px
+          &.nought div span
+            background-image url("/app/client/img/nought.svg")
+            width 50px
+            height 50px
+
         td:last-child
           border-right none
         td:first-child
@@ -51,5 +77,4 @@ body
         border-top none
       tr:last-child
         border-bottom none
-        
-    
+
